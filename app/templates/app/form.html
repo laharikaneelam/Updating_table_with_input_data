@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Register Here</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+    <form class="container" method="post">
+      {% csrf_token %}
+      <label for="name">Name:</label>
+      <input id="name" type="text" name="inp1"/><br><br>
+      <label for="age">Age:</label>
+      <input id="age" type="number" name="inp2"/><br><br>
+      <label for="addr">Address</label>
+      <input id="addr" type="text" name="inp3"/><br><br>
+      <label for="num">Phone Number:</label>
+      <input id="num" type="number" name="inp4"/><br><br>
+      <label for="img">Image:</label>
+      <input type="file" name="image" id="img"><br><br>
+      <input type="submit">
+    </form><br><br><br>
+    {% if access_records %}
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>Number</th>
+      </thead>
+      {% for i in access_records %}
+      <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.age}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.number}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </body>
+</html>
